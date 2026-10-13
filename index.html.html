@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERUS - Infografía Interactiva Modelo de Negocio y Finanzas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfeff',
+                            100: '#cffafe',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            800: '#155e75',
+                            900: '#0b1329',
+                            950: '#030712'
+                        },
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0b1329',
+                            950: '#020617'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 380px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            backdrop-filter: blur(12px);
+        }
+        .glass-card-accent {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(6, 182, 212, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen pb-16 selection:bg-cyan-500 selection:text-slate-950">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-cyan-900/30 px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-cyan-600 to-blue-600 p-2.5 rounded-xl shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-shield-halved text-2xl text-white"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">CYBERUS</span>
+                    <span class="block text-xs font-semibold text-cyan-400 tracking-wider uppercase">Ciberseguridad Accesible Para Todos</span>
+                </div>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-2 text-xs md:text-sm font-medium text-slate-300">
+                <a href="#kpis" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-cyan-400 transition-colors">Indicadores Clave</a>
+                <a href="#canvas" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-cyan-400 transition-colors">Modelo Canvas</a>
+                <a href="#finanzas" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-cyan-400 transition-colors">Proyección Financiera</a>
+                <a href="#portfolio" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-cyan-400 transition-colors">Planes y Tarifas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 pt-8 space-y-12">
+
+        <!-- Hero Title Banner -->
+        <section class="glass-card-accent rounded-2xl p-8 md:p-12 relative overflow-hidden shadow-2xl">
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-widest">
+                    <i class="fa-solid fa-location-dot"></i> Medellín & Valle de Aburrá
+                </div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                    Modelo de Negocio & Portafolio Comercial <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">CYBERUS</span>
+                </h1>
+                <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+                    Estrategia integral de ciberseguridad gestionada (MSP) en pesos colombianos (COP), orientada a proteger la continuidad operativa de las PYMEs locales mediante respaldo inmutable 3-2-1, blindaje legal ante la SIC y capacitación continua.
+                </p>
+            </div>
+        </section>
+
+        <!-- KPI Metrics Summary Header -->
+        <section id="kpis" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card rounded-xl p-6 border-l-4 border-l-cyan-500 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Inversión Inicial CAPEX</span>
+                    <i class="fa-solid fa-vault text-xl text-cyan-400/80"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white mt-3">$47M COP</div>
+                <p class="text-xs text-slate-400 mt-2">Retorno proyectado con punto de equilibrio en el Mes 5.</p>
+            </div>
+
+            <div class="glass-card rounded-xl p-6 border-l-4 border-l-blue-500 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Meta Clientes Año 3</span>
+                    <i class="fa-solid fa-building text-xl text-blue-400/80"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white mt-3">160 Empresas</div>
+                <p class="text-xs text-slate-400 mt-2">Crecimiento recurrente en PYMEs de 8 a 50 equipos.</p>
+            </div>
+
+            <div class="glass-card rounded-xl p-6 border-l-4 border-l-emerald-500 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Margen EBITDA Año 3</span>
+                    <i class="fa-solid fa-chart-line text-xl text-emerald-400/80"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-emerald-400 mt-3">37,6%</div>
+                <p class="text-xs text-slate-400 mt-2">$578.4M COP de utilidad operativa anual.</p>
+            </div>
+
+            <div class="glass-card rounded-xl p-6 border-l-4 border-l-amber-500 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Tiempo Recuperación (RTO)</span>
+                    <i class="fa-solid fa-clock text-xl text-amber-400/80"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white mt-3">&lt; 4 Horas</div>
+                <p class="text-xs text-slate-400 mt-2">Garantía de restauración ante ciberataques o fallas.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 1: CONTEXTO DE MERCADO Y VULNERABILIDAD -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+                    El Problema Crítico del Mercado Regional
+                </h2>
+                <p class="text-slate-300 text-sm md:text-base mt-2 leading-relaxed">
+                    Las empresas pequeñas y medianas del Valle de Aburrá sufren ataques informáticos diarios que amenazan su continuidad. La falta de presupuestos en dólares y la complejidad técnica impiden que accedan a soluciones tradicionales de ciberseguridad.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-rose-500/30 flex items-start gap-4">
+                        <div class="p-3 bg-rose-500/10 text-rose-400 rounded-lg text-2xl font-bold">60%</div>
+                        <div>
+                            <h4 class="font-bold text-rose-300 text-base">Riesgo de Quiebra Inminente</h4>
+                            <p class="text-xs text-slate-300 mt-1">El 60% de las PYMEs vulneradas por secuestro de datos (ransomware) o fraude financiero deben cerrar sus operaciones en menos de 6 meses.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                        <div class="p-3 bg-amber-500/10 text-amber-400 rounded-lg text-xl">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-200 text-base">Vulnerabilidades Más Comunes</h4>
+                            <p class="text-xs text-slate-400 mt-1">Contraseñas compartidas en WhatsApp, copias de seguridad inexistentes y suplantación de identidad por correos falsos de la DIAN o bancos.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                        <div class="p-3 bg-cyan-500/10 text-cyan-400 rounded-lg text-xl">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-200 text-base">Riesgo Legal y Sanciones SIC</h4>
+                            <p class="text-xs text-slate-400 mt-1">Incumplimiento de la Ley 1581 (Habeas Data) expone a multas millonarias de la Superintendencia de Industria y Comercio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2 text-center">Tasa de Cierre Post-Ataque en PYMEs</h3>
+                    <div class="chart-container">
+                        <canvas id="marketImpactChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center mt-3 max-w-sm">
+                        La ausencia de protocolos de seguridad preventiva genera pérdidas irreparables en las empresas sin acompañamiento MSP.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MODELO DE NEGOCIO CANVAS (FASE 1) -->
+        <section id="canvas" class="space-y-6">
+            <div class="border-l-4 border-cyan-500 pl-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Fase 1: Modelo de Negocio Canvas (CYBERUS)</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Estructura estratégica diseñada para brindar ciberseguridad accesible y sostenida a las empresas en Antioquia.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Canvas Box 1 -->
+                <div class="glass-card rounded-xl p-6 border-t-2 border-t-cyan-500 space-y-3">
+                    <div class="flex items-center gap-3 text-cyan-400">
+                        <i class="fa-solid fa-shield-virus text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Propuesta de Valor</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        <strong class="text-cyan-300">CiberEscudo PYME Medellín:</strong> Solución gestionada (MSP) en COP. Incluye respaldo 3-2-1 en la nube con RTO &lt;4h, micro-capacitaciones de 5 min (Edutainment), blindaje legal Ley 1581 ante la SIC y atención humana 24/7 sin jerga técnica.
+                    </p>
+                </div>
+
+                <!-- Canvas Box 2 -->
+                <div class="glass-card rounded-xl p-6 border-t-2 border-t-blue-500 space-y-3">
+                    <div class="flex items-center gap-3 text-blue-400">
+                        <i class="fa-solid fa-users text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Segmentos de Clientes</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Gerentes y propietarios de PYMEs (8 a 50 empleados) en el Valle de Aburrá (Medellín, Itagüí, Envigado, Bello, Sabaneta). Sectores: confección/textil, contable, distribución, logística, clínicas y e-commerce.
+                    </p>
+                </div>
+
+                <!-- Canvas Box 3 -->
+                <div class="glass-card rounded-xl p-6 border-t-2 border-t-indigo-500 space-y-3">
+                    <div class="flex items-center gap-3 text-indigo-400">
+                        <i class="fa-solid fa-bullhorn text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Canales de Distribución</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        <strong class="text-indigo-300">Directo:</strong> Ventas consultivas presenciales en parques industriales. <strong class="text-indigo-300">Digital:</strong> Autodiagnóstico de riesgo en línea y LinkedIn. <strong class="text-indigo-300">Indirecto:</strong> Alianzas con ACOPI, Fenalco y Cámaras de Comercio.
+                    </p>
+                </div>
+
+                <!-- Canvas Box 4 -->
+                <div class="glass-card rounded-xl p-6 border-t-2 border-t-emerald-500 space-y-3">
+                    <div class="flex items-center gap-3 text-emerald-400">
+                        <i class="fa-solid fa-handshake text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Relación con Clientes</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Modelo de <strong class="text-emerald-300">Tranquilidad Continuada</strong> con acompañamiento humano cercano, reportes mensuales ejecutivos de amenazas bloqueadas y respuesta en menos de 15 minutos.
+                    </p>
+                </div>
+
+                <!-- Canvas Box 5 -->
+                <div class="glass-card rounded-xl p-6 border-t-2 border-t-amber-500 space-y-3">
+                    <div class="flex items-center gap-3 text-amber-400">
+                        <i class="fa-solid fa-coins text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Fuentes de Ingresos</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Suscripción recurrente mensual/anual MSP por escala de usuarios en pesos colombianos (COP). Servicios adicionales de auditoría Ley 1581 y capacitaciones especializadas.
+                    </p>
+                </div>
+
+                <!-- Canvas Box 6 -->
+                <div class="glass-card rounded-xl p-6 border-t-2 border-t-rose-500 space-y-3">
+                    <div class="flex items-center gap-3 text-rose-400">
+                        <i class="fa-solid fa-gears text-xl"></i>
+                        <h3 class="font-bold text-white text-lg">Actividades y Recursos Clave</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Administración RMM/EDR, respaldos automáticos en la nube cifrada, plataforma de Edutainment pedagógico y equipo experto en derecho informático y TI.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PLAN FINANCIERO Y PROYECCIONES (FASE 3) -->
+        <section id="finanzas" class="space-y-8">
+            <div class="border-l-4 border-emerald-500 pl-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Fase 3: Plan Financiero & Proyecciones (3 Años)</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Análisis de rentabilidad, escalabilidad del modelo de ingresos recurrentes (MSP) e inversión inicial.
+                </p>
+            </div>
+
+            <!-- Financial Charts Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Chart: Inversión Inicial Breakdown -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-cyan-400"></i>
+                            Distribución de Inversión Inicial ($47.000.000 COP)
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">
+                            El capital se destina principalmente a garantizar la operación inicial de 3 meses y la infraestructura de monitoreo RMM/EDR.
+                        </p>
+                    </div>
+                    <div class="chart-container my-4">
+                        <canvas id="initialInvestmentChart"></canvas>
+                    </div>
+                    <div class="text-xs text-slate-400 text-center border-t border-slate-800 pt-3">
+                        Total Inversión: <strong>$47M COP</strong> | Capital de Trabajo: <strong>38,3%</strong> ($18M COP)
+                    </div>
+                </div>
+
+                <!-- Chart: Proyección de Ingresos vs Costos y EBITDA -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-chart-column text-emerald-400"></i>
+                            Proyección de Desempeño Financiero (Años 1 - 3)
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">
+                            Demuestra un crecimiento sostenido impulsado por el modelo de suscripción recurrente con márgenes brutos del 65%.
+                        </p>
+                    </div>
+                    <div class="chart-container my-4">
+                        <canvas id="financialProjectionsChart"></canvas>
+                    </div>
+                    <div class="text-xs text-slate-400 text-center border-t border-slate-800 pt-3">
+                        EBITDA crece de <strong>27,5% ($92.4M)</strong> en el Año 1 al <strong>37,6% ($578.4M)</strong> en el Año 3.
+                    </div>
+                </div>
+
+                <!-- Chart: Crecimiento de Clientes Activos -->
+                <div class="glass-card rounded-xl p-6 lg:col-span-2">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-trend-up text-blue-400"></i>
+                            Evolución de Clientes Activos y Punto de Equilibrio
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">
+                            El punto de equilibrio se alcanza en el Mes 5 con 14 empresas suscritas. La retención continua permite escalar hasta 160 empresas en el Año 3.
+                        </p>
+                    </div>
+                    <div class="chart-container my-4 max-w-4xl">
+                        <canvas id="clientGrowthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Table -->
+            <div class="glass-card rounded-xl overflow-hidden border border-slate-800 shadow-xl">
+                <div class="px-6 py-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+                    <h3 class="font-bold text-white text-base">Resumen de Indicadores Financieros (COP)</h3>
+                    <span class="text-xs font-semibold text-cyan-400 bg-cyan-950 px-2.5 py-1 rounded-full border border-cyan-800">Modelo MSP</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs md:text-sm">
+                        <thead class="bg-slate-900/90 text-slate-300 font-bold uppercase tracking-wider border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Indicador Financiero</th>
+                                <th class="p-4 text-center">Año 1</th>
+                                <th class="p-4 text-center">Año 2</th>
+                                <th class="p-4 text-center">Año 3</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                            <tr class="hover:bg-slate-900/50">
+                                <td class="p-4 font-semibold text-white">Clientes Activos (Promedio)</td>
+                                <td class="p-4 text-center font-bold text-cyan-400">35 empresas</td>
+                                <td class="p-4 text-center font-bold text-cyan-400">85 empresas</td>
+                                <td class="p-4 text-center font-bold text-cyan-400">160 empresas</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50">
+                                <td class="p-4 font-semibold text-white">Ingresos Brutos Anuales</td>
+                                <td class="p-4 text-center text-slate-200">$336.000.000</td>
+                                <td class="p-4 text-center text-slate-200">$816.000.000</td>
+                                <td class="p-4 text-center text-slate-200">$1.536.000.000</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50">
+                                <td class="p-4 text-slate-400">Costos Directos (Licencias / Nube - 35%)</td>
+                                <td class="p-4 text-center text-slate-400">$117.600.000</td>
+                                <td class="p-4 text-center text-slate-400">$285.600.000</td>
+                                <td class="p-4 text-center text-slate-400">$537.600.000</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50 bg-slate-900/30">
+                                <td class="p-4 font-semibold text-emerald-400">Margen Bruto (65%)</td>
+                                <td class="p-4 text-center font-semibold text-emerald-400">$218.400.000</td>
+                                <td class="p-4 text-center font-semibold text-emerald-400">$530.400.000</td>
+                                <td class="p-4 text-center font-semibold text-emerald-400">$998.400.000</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50">
+                                <td class="p-4 text-slate-400">Gastos Operativos (Nómina, Ventas, Admin)</td>
+                                <td class="p-4 text-center text-slate-400">$126.000.000</td>
+                                <td class="p-4 text-center text-slate-400">$240.000.000</td>
+                                <td class="p-4 text-center text-slate-400">$420.000.000</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/50 bg-emerald-950/20 font-bold">
+                                <td class="p-4 text-white">EBITDA</td>
+                                <td class="p-4 text-center text-emerald-300">$92.400.000</td>
+                                <td class="p-4 text-center text-emerald-300">$290.400.000</td>
+                                <td class="p-4 text-center text-emerald-300">$578.400.000</td>
+                            </tr>
+                            <tr class="bg-cyan-950/40 font-bold border-t-2 border-cyan-500">
+                                <td class="p-4 text-cyan-300 uppercase tracking-wider">Margen EBITDA (%)</td>
+                                <td class="p-4 text-center text-cyan-300">27,5%</td>
+                                <td class="p-4 text-center text-cyan-300">35,5%</td>
+                                <td class="p-4 text-center text-cyan-300">37,6%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PORTAFOLIO COMERCIAL Y PLANES (FASE 4) -->
+        <section id="portfolio" class="space-y-8">
+            <div class="border-l-4 border-cyan-500 pl-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Fase 4: Portafolio Comercial "CiberEscudo PYME"</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Planes de protección integral estructurados en pesos colombianos (COP), sin cláusulas abusivas ni sorpresas cambiarias.
+                </p>
+            </div>
+
+            <!-- Plans Pricing Bar Chart Comparison -->
+            <div class="glass-card rounded-xl p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-cyan-400"></i>
+                            Comparativa de Inversión Mensual por Plan (COP)
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Tarifa mensual fija adaptada a la escala operativa de la empresa.</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="pricingPlansChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Detailed Cards for Plans -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Plan Básico -->
+                <div class="glass-card rounded-xl p-6 border-t-4 border-t-slate-400 flex flex-col justify-between space-y-6 hover:border-slate-300 transition-all">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Escudo Básico</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs">Hasta 10 Equipos</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white">
+                            $480.000 <span class="text-xs font-medium text-slate-400">COP/mes</span>
+                        </div>
+                        <p class="text-xs text-slate-300">Ideal para microempresas y firmas profesionales pequeñas que requieren protección fundamental.</p>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Gestor de Contraseñas Cifrado</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Autenticación MFA Assist</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Backup Nube 3-2-1 (Hasta 500 GB)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> RTO &lt; 4 Horas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Micro-Cápsulas Mensuales</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Simulacro Phishing Trimestral</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Soporte Remoto 24/7</li>
+                        </ul>
+                    </div>
+                    <button onclick="alert('Solicite su diagnóstico gratuito para el Plan Básico')" class="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition-colors">
+                        Seleccionar Básico
+                    </button>
+                </div>
+
+                <!-- Plan Pro -->
+                <div class="glass-card-accent rounded-xl p-6 border-t-4 border-t-cyan-500 flex flex-col justify-between space-y-6 relative shadow-2xl scale-105">
+                    <div class="absolute -top-3 right-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                        Más Popular
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Escudo Pro</span>
+                            <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 text-xs">11 a 25 Equipos</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white">
+                            $950.000 <span class="text-xs font-medium text-slate-400">COP/mes</span>
+                        </div>
+                        <p class="text-xs text-slate-300">Diseñado para PYMEs comerciales, logísticas y distribuidoras en crecimiento activo.</p>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Todo lo del Plan Básico</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Backup Nube 3-2-1 (Hasta 1.5 TB)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Micro-Cápsulas Quincenales</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Simulacro Phishing Bimensual</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Revisión Completa Ley 1581 (SIC)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Soporte Remoto + Presencial</li>
+                        </ul>
+                    </div>
+                    <button onclick="alert('Solicite su diagnóstico gratuito para el Plan Pro')" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold text-xs transition-all shadow-lg">
+                        Seleccionar Pro
+                    </button>
+                </div>
+
+                <!-- Plan Enterprise -->
+                <div class="glass-card rounded-xl p-6 border-t-4 border-t-indigo-500 flex flex-col justify-between space-y-6 hover:border-indigo-400 transition-all">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Escudo Enterprise</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 text-xs">26 a 50 Equipos</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white">
+                            $1.650.000 <span class="text-xs font-medium text-slate-400">COP/mes</span>
+                        </div>
+                        <p class="text-xs text-slate-300">Blindaje de nivel corporativo para industrias textiles, clínicas y e-commerce consolidado.</p>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Todo lo del Plan Pro</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Backup Nube 3-2-1 (Hasta 3.0 TB)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> RTO Prioritario &lt; 2 Horas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Micro-Cápsulas Semanales</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Simulacro Phishing Mensual</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Auditoría Anual Ley 1581</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Soporte Prioritario Dedicado</li>
+                        </ul>
+                    </div>
+                    <button onclick="alert('Solicite su diagnóstico gratuito para el Plan Enterprise')" class="w-full py-2.5 rounded-lg bg-indigo-900 hover:bg-indigo-800 text-white font-semibold text-xs transition-colors">
+                        Seleccionar Enterprise
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: PROCESO DE IMPLEMENTACIÓN EN 3 PASOS -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Proceso de Implementación en 3 Pasos</h2>
+                <p class="text-slate-400 text-sm">Despliegue ágil diseñado para no interrumpir las operaciones de su empresa.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="bg-slate-900/90 rounded-xl p-6 border border-slate-800 flex flex-col items-center text-center space-y-3 relative">
+                    <div class="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 flex items-center justify-center font-extrabold text-lg">
+                        1
+                    </div>
+                    <h3 class="font-bold text-white text-base">Diagnóstico Inicial Gratuito</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Evaluación completa de vulnerabilidades y nivel de exposición frente a ransomware en menos de 48 horas a costo cero.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-900/90 rounded-xl p-6 border border-slate-800 flex flex-col items-center text-center space-y-3 relative">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/40 text-blue-400 flex items-center justify-center font-extrabold text-lg">
+                        2
+                    </div>
+                    <h3 class="font-bold text-white text-base">Configuración e Instalación</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Instalación asistida de gestores cifrados y respaldos inmutables en la nube entre el día 3 y 7 sin pausar su negocio.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-900/90 rounded-xl p-6 border border-slate-800 flex flex-col items-center text-center space-y-3 relative">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex items-center justify-center font-extrabold text-lg">
+                        3
+                    </div>
+                    <h3 class="font-bold text-white text-base">Protección y Entrenamiento</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Activación de monitoreo proactivo 24/7 e inicio del programa de Edutainment pedagógico para todos sus colaboradores.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Contact Footer Section -->
+        <section class="glass-card-accent rounded-2xl p-8 md:p-12 text-center space-y-6">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white">¿Listo para blindar la operación de su PYME?</h2>
+            <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto">
+                Solicite su diagnóstico de riesgo gratuito en 3 minutos. Proteja su información, evite multas de la SIC y garantice la continuidad de su empresa.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-2">
+                <a href="https://www.cyberus.co" target="_blank" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-sm hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-globe mr-2"></i> Visitar www.cyberus.co
+                </a>
+                <a href="mailto:contacto@cyberus.co" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm transition-colors border border-slate-700">
+                    <i class="fa-solid fa-envelope mr-2"></i> contacto@cyberus.co
+                </a>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800/80 text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <span><strong>Líder de Proyecto:</strong> Santiago Saldarriaga Graciano - Consultor Principal</span>
+                <span>Medellín, Antioquia - Cobertura Valle de Aburrá</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-xs text-slate-500 pt-12 pb-6">
+        <p>© 2026 CYBERUS. Todos los derechos reservados. Ciberseguridad Gestionada en Pesos Colombianos (COP).</p>
+    </footer>
+
+    <!-- JavaScript Charts Logic -->
+    <script>
+        // Label wrapping helper for Chart.js (>16 characters requirement)
+        function wrapLabel(str, maxLen = 16) {
+            if (typeof str !== 'string') return str;
+            if (str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLen) {
+                    if (currentLine) lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            });
+            if (currentLine) lines.push(currentLine.trim());
+            return lines;
+        }
+
+        // Standard chart options with multi-line tooltip callback requirement
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#94a3b8',
+                        font: { family: 'Inter', size: 12 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // 1. Market Impact Doughnut Chart
+        const ctxMarket = document.getElementById('marketImpactChart').getContext('2d');
+        const rawMarketLabels = ['Quebradas en <6 Meses', 'Superviviencia con Pérdidas'];
+        new Chart(ctxMarket, {
+            type: 'doughnut',
+            data: {
+                labels: rawMarketLabels.map(l => wrapLabel(l)),
+                datasets: [{
+                    data: [60, 40],
+                    backgroundColor: ['#ef4444', '#334155'],
+                    borderColor: '#0f172a',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    legend: { position: 'bottom', labels: { color: '#cbd5e1' } }
+                }
+            }
+        });
+
+        // 2. Initial Investment Breakdown Doughnut Chart
+        const ctxInvestment = document.getElementById('initialInvestmentChart').getContext('2d');
+        const rawInvestmentLabels = [
+            'Capital de Trabajo (3 Meses)',
+            'Desarrollo Web y Diagnóstico',
+            'Infraestructura y Licencias RMM/EDR',
+            'Marketing B2B y Alianzas'
+        ];
+        new Chart(ctxInvestment, {
+            type: 'doughnut',
+            data: {
+                labels: rawInvestmentLabels.map(l => wrapLabel(l)),
+                datasets: [{
+                    data: [18000000, 12000000, 9000000, 8000000],
+                    backgroundColor: ['#06b6d4', '#3b82f6', '#6366f1', '#f59e0b'],
+                    borderColor: '#0f172a',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { size: 11 } } },
+                    tooltip: {
+                        ...commonChartOptions.plugins.tooltip,
+                        callbacks: {
+                            ...commonChartOptions.plugins.tooltip.callbacks,
+                            label: function(context) {
+                                let val = context.raw;
+                                return ' COP $' + val.toLocaleString('es-CO');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Financial Projections Bar Chart (Ingresos, Costos, EBITDA)
+        const ctxFinancial = document.getElementById('financialProjectionsChart').getContext('2d');
+        const financialYears = ['Año 1 (35 PYMEs)', 'Año 2 (85 PYMEs)', 'Año 3 (160 PYMEs)'];
+        new Chart(ctxFinancial, {
+            type: 'bar',
+            data: {
+                labels: financialYears.map(l => wrapLabel(l)),
+                datasets: [
+                    {
+                        label: 'Ingresos Brutos',
+                        data: [336000000, 816000000, 1536000000],
+                        backgroundColor: '#06b6d4',
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Costos Directos (35%)',
+                        data: [117600000, 285600000, 537600000],
+                        backgroundColor: '#f43f5e',
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'EBITDA Operativo',
+                        data: [92400000, 290400000, 578400000],
+                        backgroundColor: '#10b981',
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    y: { 
+                        ticks: { 
+                            color: '#94a3b8',
+                            callback: function(value) { return '$' + (value / 1000000) + 'M'; }
+                        },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    }
+                }
+            }
+        });
+
+        // 4. Client Growth & Breakeven Line Chart
+        const ctxClients = document.getElementById('clientGrowthChart').getContext('2d');
+        const timelineLabels = ['Inicio (M1)', 'Punto Equilibrio (M5)', 'Fin Año 1', 'Fin Año 2', 'Fin Año 3'];
+        new Chart(ctxClients, {
+            type: 'line',
+            data: {
+                labels: timelineLabels.map(l => wrapLabel(l)),
+                datasets: [
+                    {
+                        label: 'Empresas Suscritas',
+                        data: [3, 14, 35, 85, 160],
+                        borderColor: '#38bdf8',
+                        backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#0284c7'
+                    },
+                    {
+                        label: 'Umbral Punto de Equilibrio (14 Clientes)',
+                        data: [14, 14, 14, 14, 14],
+                        borderColor: '#f59e0b',
+                        borderDash: [6, 6],
+                        fill: false,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    y: { 
+                        ticks: { color: '#94a3b8' },
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        title: { display: true, text: 'Número de PYMEs', color: '#64748b' }
+                    }
+                }
+            }
+        });
+
+        // 5. Commercial Pricing Plans Bar Chart
+        const ctxPricing = document.getElementById('pricingPlansChart').getContext('2d');
+        const planNames = ['Plan Escudo Básico', 'Plan Escudo Pro', 'Plan Escudo Enterprise'];
+        new Chart(ctxPricing, {
+            type: 'bar',
+            data: {
+                labels: planNames.map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'Inversión Mensual (COP)',
+                    data: [480000, 950000, 1650000],
+                    backgroundColor: ['#94a3b8', '#06b6d4', '#6366f1'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#94a3b8',
+                            callback: function(value) { return '$' + (value / 1000) + 'k COP'; }
+                        },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    },
+                    y: { ticks: { color: '#ffffff', font: { weight: 'bold' } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
